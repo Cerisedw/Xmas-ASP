@@ -1,0 +1,6 @@
+C:\Users\c.wannemaeker\source\repos\Xmas\Xmas.Entities\bin\Debug\Xmas.Entities.dll
+C:\Users\c.wannemaeker\source\repos\Xmas\Xmas.Entities\bin\Debug\Xmas.Entities.pdb
+C:\Users\c.wannemaeker\source\repos\Xmas\Xmas.Entities\obj\Debug\Xmas.Entities.csprojAssemblyReference.cache
+C:\Users\c.wannemaeker\source\repos\Xmas\Xmas.Entities\obj\Debug\Xmas.Entities.csproj.CoreCompileInputs.cache
+C:\Users\c.wannemaeker\source\repos\Xmas\Xmas.Entities\obj\Debug\Xmas.Entities.dll
+C:\Users\c.wannemaeker\source\repos\Xmas\Xmas.Entities\obj\Debug\Xmas.Entities.pdb

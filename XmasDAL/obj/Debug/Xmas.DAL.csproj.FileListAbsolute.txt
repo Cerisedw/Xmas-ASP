@@ -1,0 +1,11 @@
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\bin\Debug\XmasDAL.dll
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\bin\Debug\XmasDAL.pdb
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\bin\Debug\ToolBox.dll
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\bin\Debug\ToolBox.pdb
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\obj\Debug\Xmas.DAL.csprojAssemblyReference.cache
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\obj\Debug\Xmas.DAL.csproj.CoreCompileInputs.cache
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\obj\Debug\Xmas.DAL.csproj.CopyComplete
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\obj\Debug\XmasDAL.dll
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\obj\Debug\XmasDAL.pdb
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\bin\Debug\Xmas.Entities.dll
+C:\Users\c.wannemaeker\source\repos\Xmas\XmasDAL\bin\Debug\Xmas.Entities.pdb
