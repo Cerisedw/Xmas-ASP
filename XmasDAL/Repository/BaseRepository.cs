@@ -65,7 +65,7 @@ namespace XmasDAL.Repository
         {
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
-            string sid = (o[0] as TableAttribute).Fk;
+            string sid = (o[0] as TableAttribute).Fk.ToList()[0];
             Command cmd = new Command($"DELETE FROM {s} WHERE {sid} = @Id;");
             cmd.AddParameter("Id", key);
             return _oconn.ExecuteNonQuery(cmd) == 1;
@@ -79,7 +79,7 @@ namespace XmasDAL.Repository
             // ne pas oublier de concatener a la fin le ;
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
-            string sid = (o[0] as TableAttribute).Fk;
+            string sid = (o[0] as TableAttribute).Fk.ToList()[0];
             Command cmd = new Command($"SELECT * FROM {s} WHERE {sid} = @Id;");
             cmd.AddParameter("Id", key);
             return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
@@ -89,9 +89,7 @@ namespace XmasDAL.Repository
         {
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
-
             Command cmd = new Command($"SELECT * FROM {s}");
-
             return _oconn.ExecuteReader(cmd, maFonction);
         }
 

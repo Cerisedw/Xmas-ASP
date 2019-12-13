@@ -11,7 +11,18 @@ namespace Xmas.Entities.Models
     {
 
         private string _tableName;
-        private string _fk;
+        private IEnumerable<string> _fk;
+
+        public TableAttribute(string tableName, params string[] listeFk)
+        {
+            this.TableName = tableName;
+            List<string> l = new List<string>();
+            foreach (string s in listeFk) 
+            {
+                l.Add(s);
+            }
+            this.Fk = l;
+        }
 
         public string TableName
         {
@@ -26,7 +37,7 @@ namespace Xmas.Entities.Models
             }
         }
 
-        public string Fk
+        public IEnumerable<string> Fk
         {
             get
             {

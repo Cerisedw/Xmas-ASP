@@ -20,3 +20,8 @@ C:\Users\c.wannemaeker\source\repos\Xmas\ToolBox\obj\Debug\ToolBox.csprojAssembl
 C:\Users\c.wannemaeker\source\repos\Xmas\ToolBox\obj\Debug\ToolBox.csproj.CoreCompileInputs.cache
 C:\Users\c.wannemaeker\source\repos\Xmas\ToolBox\obj\Debug\ToolBox.dll
 C:\Users\c.wannemaeker\source\repos\Xmas\ToolBox\obj\Debug\ToolBox.pdb
+C:\Users\myrti\Documents\Code\Xmas\Xmas-ASP\ToolBox\bin\Debug\ToolBox.dll
+C:\Users\myrti\Documents\Code\Xmas\Xmas-ASP\ToolBox\bin\Debug\ToolBox.pdb
+C:\Users\myrti\Documents\Code\Xmas\Xmas-ASP\ToolBox\obj\Debug\ToolBox.csprojAssemblyReference.cache
+C:\Users\myrti\Documents\Code\Xmas\Xmas-ASP\ToolBox\obj\Debug\ToolBox.dll
+C:\Users\myrti\Documents\Code\Xmas\Xmas-ASP\ToolBox\obj\Debug\ToolBox.pdb

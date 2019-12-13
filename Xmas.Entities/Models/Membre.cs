@@ -7,7 +7,7 @@ using Xmas.Entities.Models;
 
 namespace Xmas.Entities
 {
-    [Table(TableName = "Membre", Fk = "IdMembre")]
+    [Table("Membre", "IdMembre")]
     public class Membre : IEntities<int>
     {
 
