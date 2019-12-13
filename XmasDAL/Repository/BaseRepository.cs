@@ -73,6 +73,10 @@ namespace XmasDAL.Repository
 
         protected T get(TKey key, Func<SqlDataReader, T> maFonction)
         {
+            // Essayer de faire le tableau pour FK => si il ne contient qu'un élément => $"SELECT * FROM {s} WHERE {sid} = @Id;"
+            // Si on en a plusieurs, faire une boucle for ou on concatene un 
+            // AND  IdEvenement= @IdEvenement par exemple pour chaque autre element de FK apres FK[0]
+            // ne pas oublier de concatener a la fin le ;
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
             string sid = (o[0] as TableAttribute).Fk;
