@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xmas.Entities.Models
 {
+    [Table(TableName = "Tirage")]
     public class Tirage : IEntities<int>
     {
 

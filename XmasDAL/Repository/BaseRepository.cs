@@ -14,6 +14,8 @@ namespace XmasDAL.Repository
         where T : class, IEntities<TKey>, new()
     {
 
+        private string _insertCommand;
+        private string _updateCommand;
         private Connection _oconn;
         private string _cnstr = @"Data Source=WAD-12\ADMINSQL;Initial Catalog=XmasDb;User ID=aspuser;Password=test1234=;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
@@ -22,20 +24,52 @@ namespace XmasDAL.Repository
             _oconn = new Connection(_cnstr);
         }
 
+        public string InsertCommand
+        {
+            get
+            {
+                return _insertCommand;
+            }
+
+            set
+            {
+                _insertCommand = value;
+            }
+        }
+
+        public string UpdateCommand
+        {
+            get
+            {
+                return _updateCommand;
+            }
+
+            set
+            {
+                _updateCommand = value;
+            }
+        }
+
         public abstract bool Delete(TKey key);
         public abstract T Get(TKey key);
         public abstract IEnumerable<T> GetAll();
         public abstract T Insert(T item);
-        public abstract bool Update(TKey key, T item);
+        public abstract bool Update(T item);
 
         protected bool delete(TKey key)
         {
-            throw new NotImplementedException();
+            Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
+            string s = (o[0] as TableAttribute).TableName;
+            Command cmd = new Command($"DELETE FROM {s} WHERE Id = @id;");
+            cmd.AddParameter("Id", key);
+            return _oconn.ExecuteNonQuery(cmd) == 1;
         }
 
         protected T get(TKey key, Func<SqlDataReader, T> maFonction)
         {
-            Command cmd = new Command("SELECT * FROM song WHERE Id = @id;");
+            Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
+            string s = (o[0] as TableAttribute).TableName;
+            Command cmd = new Command($"SELECT * FROM {s} WHERE Id = @id;");
             cmd.AddParameter("Id", key);
             return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
         }
@@ -50,17 +84,26 @@ namespace XmasDAL.Repository
             return _oconn.ExecuteReader(cmd, maFonction);
         }
 
-        protected T insert(T item)
+        protected int insert(Dictionary<string, object> parameters)
         {
-            throw new NotImplementedException();
+            Command cmd = new Command(InsertCommand);
+            foreach (KeyValuePair<string, object> item in parameters)
+            {
+                cmd.AddParameter(item.Key, item.Value);
+            }
+
+            return _oconn.ExecuteNonQuery(cmd);
         }
 
-        protected bool update(TKey key, T item)
+        protected bool update(Dictionary<string, object> parameters)
         {
-            throw new NotImplementedException();
+            Command cmd = new Command(UpdateCommand);
+            foreach (KeyValuePair<string, object> item in parameters)
+            {
+                cmd.AddParameter(item.Key, item.Value);
+            }
+
+            return _oconn.ExecuteNonQuery(cmd) == 1;
         }
-
-
-  
     }
 }

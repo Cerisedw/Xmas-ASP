@@ -12,7 +12,7 @@ namespace XmasDAL.Repository
         IEnumerable<T> GetAll();
         T Get(TKey key);
         T Insert(T item);
-        bool Update(TKey key, T item);
+        bool Update(T item);
         bool Delete(TKey key);
     }
 }
