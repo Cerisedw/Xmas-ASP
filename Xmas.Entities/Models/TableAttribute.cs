@@ -11,6 +11,7 @@ namespace Xmas.Entities.Models
     {
 
         private string _tableName;
+        private string _fk;
 
         public string TableName
         {
@@ -22,6 +23,19 @@ namespace Xmas.Entities.Models
             set
             {
                 _tableName = value;
+            }
+        }
+
+        public string Fk
+        {
+            get
+            {
+                return _fk;
+            }
+
+            set
+            {
+                _fk = value;
             }
         }
     }

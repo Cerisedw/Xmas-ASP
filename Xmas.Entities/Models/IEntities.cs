@@ -8,6 +8,6 @@ namespace Xmas.Entities.Models
 {
     public interface IEntities<TKey>
     {
-        TKey id {get;}
+        TKey id { get; set; }
     }
 }

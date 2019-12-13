@@ -54,13 +54,19 @@ namespace XmasDAL.Repository
         public abstract T Get(TKey key);
         public abstract IEnumerable<T> GetAll();
         public abstract T Insert(T item);
-        public abstract bool Update(T item);
+        public bool Update(T item)
+        {
+            Dictionary<string, object> Parameters = itemToDictio(item);
+            return update(Parameters);
+        }
+        protected abstract Dictionary<string, object> itemToDictio(T item);
 
         protected bool delete(TKey key)
         {
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
-            Command cmd = new Command($"DELETE FROM {s} WHERE Id = @id;");
+            string sid = (o[0] as TableAttribute).Fk;
+            Command cmd = new Command($"DELETE FROM {s} WHERE {sid} = @Id;");
             cmd.AddParameter("Id", key);
             return _oconn.ExecuteNonQuery(cmd) == 1;
         }
@@ -69,7 +75,8 @@ namespace XmasDAL.Repository
         {
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
-            Command cmd = new Command($"SELECT * FROM {s} WHERE Id = @id;");
+            string sid = (o[0] as TableAttribute).Fk;
+            Command cmd = new Command($"SELECT * FROM {s} WHERE {sid} = @Id;");
             cmd.AddParameter("Id", key);
             return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
         }

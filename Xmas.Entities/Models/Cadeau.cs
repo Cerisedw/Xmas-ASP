@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xmas.Entities.Models
 {
-    [Table(TableName = "Cadeau")]
+    [Table(TableName = "Cadeau", Fk = "IdCadeau")]
     public class Cadeau : IEntities<int>
     {
 

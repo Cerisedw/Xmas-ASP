@@ -10,18 +10,19 @@ using XmasDAL.Repository;
 
 namespace XmasDAL
 {
-    public class MembreRepository : BaseRepository<int, Membre>
+    public sealed class MembreRepository : BaseRepository<int, Membre>
     {
 
         public MembreRepository() : base()
         {
             InsertCommand = @"INSERT INTO Membre(Nom, Prenom, Surnom, Courriel, MotDePasse) 
-                VALUES(@Nom, @Prenom, @Surnom, @Courriel, @MotDePasse";
+                OUTPUT INSERTED.IdMembre 
+                VALUES(@Nom, @Prenom, @Surnom, @Courriel, @MotDePasse);";
             UpdateCommand = @"UPDATE  Membre
                 SET Nom = @Nom,  Prenom = @Prenom,  Surnom = @Surnom, 
                 Courriel = @Courriel,  MotDePasse = @MotDePasse 
-                WHERE IdMembre = @IdMembre";
-            ;
+                WHERE IdMembre = @IdMembre;";
+            
         }
         public override bool Delete(int key)
         {
@@ -40,25 +41,17 @@ namespace XmasDAL
         public override Membre Insert(Membre item)
         {
             Dictionary<string, object> Parameters = itemToDictio(item);
-            int id = base.insert(Parameters);
+            int id = insert(Parameters);
             item.id = id;
             return item;
         }
 
-        public override bool Update(Membre item)
-        {
-            Dictionary<string, object> Parameters = itemToDictio(item);
-            
-            return base.update(Parameters);
-
-        }
-
 
         // Transforme un objet en dictionnaire pour le Base Repository
-        private Dictionary<string, object> itemToDictio(Membre item)
+        protected override Dictionary<string, object> itemToDictio(Membre item)
         {
-
             Dictionary<string, object> dictio = new Dictionary<string, object>();
+            dictio["IdMembre"] = item.id;
             dictio["Nom"] = item.Nom;
             dictio["Prenom"] = item.Prenom;
             dictio["Surnom"] = item.Surnom;
