@@ -13,12 +13,12 @@ namespace XmasDAL.Repository
 
         public TirageRepository() : base()
         {
-            InsertCommand = @"INSERT INTO Tirage(IdMembreOffre,IdMembreRecois,IdEvenement,DateTirage) 
-                OUTPUT INSERTED.IdTirage  
-                VALUES (@IdMembreOffre,@IdMembreRecois,@IdEvenement,@DateTirage)";
-            UpdateCommand = @"UPDATE Tirage 
-                SET IdMembreOffre=@IdMembreOffre,IdMembreRecois=@IdMembreRecois,
-                IdEvenement=@IdEvenement,DateTirage=@DateTirage WHERE IdTirage=@IdTirage";
+            InsertCommand = "INSERT INTO Tirage(IdMembreOffre,IdMembreRecois,IdEvenement,DateTirage) " +
+                "OUTPUT INSERTED.IdTirage " +
+                "VALUES (@IdMembreOffre,@IdMembreRecois,@IdEvenement,@DateTirage)";
+            UpdateCommand = "UPDATE Tirage " +
+                "SET IdMembreOffre=@IdMembreOffre,IdMembreRecois=@IdMembreRecois," +
+                " IdEvenement=@IdEvenement,DateTirage=@DateTirage WHERE IdTirage=@IdTirage";
         }
 
         public override bool Delete(int key)
@@ -40,7 +40,7 @@ namespace XmasDAL.Repository
         {
             Dictionary<string, object> Parameters = itemToDictio(item);
             int id = insert(Parameters);
-            item.id = id;
+            item.IdTirage = id;
             return item;
         }
 
@@ -61,7 +61,7 @@ namespace XmasDAL.Repository
         {
             return new Tirage()
             {
-                id = (int)d["IdTirage"],
+                IdTirage = (int)d["IdTirage"],
                 IdMembreOffre = (int)d["IdMembreOffre"],
                 IdMembreRecois = (int)d["IdMembreRecois"],
                 IdEvenement = (int)d["IdEvenement"],

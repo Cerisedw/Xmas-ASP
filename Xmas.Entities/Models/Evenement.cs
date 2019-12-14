@@ -10,14 +10,13 @@ namespace Xmas.Entities.Models
     [Table("Evenement", "IdEvenement")]
     public class Evenement : IEntities<int>
     {
-
         private int _idEvenement;
         private string _nom;
         private string _description;
         private DateTime _dateDebut;
         private DateTime _dateFin;
 
-        public int id
+        public int IdEvenement
         {
             get
             {
@@ -80,6 +79,30 @@ namespace Xmas.Entities.Models
             {
                 _dateFin = value;
             }
+        }
+
+        public IEnumerable<CadeauEvenement> CadeauEvenement { get; set; }
+
+        public IEnumerable<Groupe> Groupe { get; set; }
+
+        public IEnumerable<Lettre> Lettre { get; set; }
+
+        public IEnumerable<Tirage> Tirages { get; set; }
+
+        public int id
+        {
+            get
+            {
+                return IdEvenement;
+            }
+        }
+
+        public Evenement()
+        {
+            this.CadeauEvenement = new List<CadeauEvenement>();
+            this.Groupe = new List<Groupe>();
+            this.Lettre = new List<Lettre>();
+            this.Tirages = new List<Tirage>();
         }
     }
 }

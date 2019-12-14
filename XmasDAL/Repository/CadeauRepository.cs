@@ -13,12 +13,12 @@ namespace XmasDAL.Repository
     {
         public CadeauRepository() : base()
         {
-            InsertCommand = @"INSERT INTO Cadeau(Nom,Description,Magasin,Prix,IdMembre) 
-                OUTPUT INSERTED.IdCadeau 
-                VALUES (@Nom,@Description,@Magasin,@Prix,@IdMembre)";
-            UpdateCommand = @"UPDATE Cadeau 
-                SET Nom=@Nom,Description=@Description,Magasin=@Magasin,Prix=@Prix,IdMembre=@IdMembre 
-                WHERE IdCadeau=@IdCadeau";
+            InsertCommand = "INSERT INTO Cadeau(Nom,Description,Magasin,Prix,IdMembre) " +
+                "OUTPUT INSERTED.IdCadeau " +
+                "VALUES (@Nom,@Description,@Magasin,@Prix,@IdMembre)";
+            UpdateCommand = "UPDATE Cadeau " +
+                "SET Nom=@Nom,Description=@Description,Magasin=@Magasin,Prix=@Prix,IdMembre=@IdMembre " +
+                "WHERE IdCadeau=@IdCadeau";
         }
 
         public override bool Delete(int key)
@@ -40,7 +40,7 @@ namespace XmasDAL.Repository
         {
             Dictionary<string, object> Parameters = itemToDictio(item);
             int id = insert(Parameters);
-            item.id = id;
+            item.IdCadeau = id;
             return item;
         }
 
@@ -63,7 +63,7 @@ namespace XmasDAL.Repository
         {
             return new Cadeau()
             {
-                id = (int)d["IdCadeau"],
+                IdCadeau = (int)d["IdCadeau"],
                 Nom = d["Nom"].ToString(),
                 Description = d["Description"].ToString(),
                 Magasin = d["Magasin"].ToString(),

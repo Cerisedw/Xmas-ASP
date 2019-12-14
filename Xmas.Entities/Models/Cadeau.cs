@@ -9,15 +9,16 @@ namespace Xmas.Entities.Models
     [Table("Cadeau", "IdCadeau")]
     public class Cadeau : IEntities<int>
     {
-
         private int _idCadeau;
         private string _nom;
         private string _description;
         private string _magasin;
-        private float _prix;
+        private double _prix;
         private int _idMembre;
 
-        public int id
+
+
+        public int IdCadeau
         {
             get
             {
@@ -69,7 +70,7 @@ namespace Xmas.Entities.Models
             }
         }
 
-        public float Prix
+        public double Prix
         {
             get
             {
@@ -92,6 +93,17 @@ namespace Xmas.Entities.Models
             set
             {
                 _idMembre = value;
+            }
+        }
+
+        public Membre Membre { get; set; }
+        public IEnumerable<CadeauEvenement> Evenement { get; set; }
+
+        public int id
+        {
+            get
+            {
+                return IdCadeau;
             }
         }
     }

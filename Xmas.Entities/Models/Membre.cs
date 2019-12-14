@@ -18,12 +18,16 @@ namespace Xmas.Entities
         private string _courriel;
         private string _motDePasse;
 
-        public int id
+
+
+
+        public int IdMembre
         {
             get
             {
                 return _idMembre;
             }
+
             set
             {
                 _idMembre = value;
@@ -93,6 +97,31 @@ namespace Xmas.Entities
             {
                 _motDePasse = value;
             }
+        }
+        public IEnumerable<Cadeau> Cadeau { get; set; }
+
+        public IEnumerable<Lettre> Lettre { get; set; }
+
+        public IEnumerable<Groupe> MembreGroupe { get; set; }
+        public IEnumerable<Groupe> AdminGroupe { get; set; }
+
+        public IEnumerable<Tirage> MesTirages { get; set; }
+
+        public int id
+        {
+            get
+            {
+                return _idMembre;
+            }
+        }
+
+        public Membre()
+        {
+            this.Cadeau = new List<Cadeau>();
+            this.Lettre = new List<Lettre>();
+            this.MembreGroupe = new List<Groupe>();
+            this.AdminGroupe = new List<Groupe>();
+            this.MesTirages = new List<Tirage>();
         }
     }
 }

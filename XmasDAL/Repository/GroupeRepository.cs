@@ -12,12 +12,11 @@ namespace XmasDAL.Repository
     {
         public GroupeRepository() : base ()
         {
-            InsertCommand = @"INSERT INTO Groupe(Nom,Description,IdEvenement) 
-                OUTPUT INSERTED.IdGroupe 
-                VALUES (@Nom,@Description,@IdEvenement)";
-            UpdateCommand = @"UPDATE Groupe 
-                SET Nom=@Nom,Description=@Description,IdEvenement=@IdEvenement 
-                WHERE IdGroupe=@IdGroupe";
+            InsertCommand = "INSERT INTO Groupe(Nom,Description,IdEvenement) " +
+                "OUTPUT INSERTED.IdGroupe VALUES (@Nom,@Description,@IdEvenement)";
+            UpdateCommand = "UPDATE Groupe " +
+                "SET Nom=@Nom,Description=@Description,IdEvenement=@IdEvenement " +
+                "WHERE IdGroupe=@IdGroupe";
         }
         public override bool Delete(int key)
         {
@@ -38,7 +37,7 @@ namespace XmasDAL.Repository
         {
             Dictionary<string, object> Parameters = itemToDictio(item);
             int id = insert(Parameters);
-            item.id = id;
+            item.IdGroupe = id;
             return item;
         }
 
@@ -58,7 +57,7 @@ namespace XmasDAL.Repository
         {
             return new Groupe()
             {
-                id = (int)d["IdGroupe"],
+                IdGroupe = (int)d["IdGroupe"],
                 Nom = d["Nom"].ToString(),
                 Description = d["Description"].ToString(),
                 IdEvenement = (int)d["IdEvenement"]

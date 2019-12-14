@@ -9,13 +9,14 @@ namespace Xmas.Entities.Models
     [Table("Groupe", "IdGroupe")]
     public class Groupe : IEntities<int>
     {
-
         private int _idGroupe;
         private string _nom;
         private string _description;
         private int _idEvenement;
 
-        public int id
+
+
+        public int IdGroupe
         {
             get
             {
@@ -66,5 +67,22 @@ namespace Xmas.Entities.Models
                 _idEvenement = value;
             }
         }
+        public Evenement Evenement { get; set; }
+        public Membre Admin { get; set; }
+        public IEnumerable<Membre> MembreGroupe { get; set; }
+
+        public int id
+        {
+            get
+            {
+                return IdGroupe;
+            }
+        }
+
+        public Groupe()
+        {
+            this.MembreGroupe = new List<Membre>();
+        }
+
     }
 }

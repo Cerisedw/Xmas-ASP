@@ -12,12 +12,12 @@ namespace XmasDAL.Repository
     {
         public EvenementRepository() : base()
         {
-            InsertCommand = @"INSERT INTO Evenement(Nom,Description,DateDebut,DateFin) 
-                OUTPUT INSERTED.IdEvenement 
-                VALUES (@Nom,@Description,@DateDebut,@DateFin)";
-            UpdateCommand = @"UPDATE Evenement 
-                SET Nom=@Nom,Description=@Description,DateDebut=@DateDebut,DateFin=@DateFin 
-                WHERE IdEvenement=@IdEvenement";
+            InsertCommand = "INSERT INTO Evenement(Nom,Description,DateDebut,DateFin) " +
+                "OUTPUT INSERTED.IdEvenement " +
+                "VALUES (@Nom,@Description,@DateDebut,@DateFin)";
+            UpdateCommand = "UPDATE Evenement " +
+                "SET Nom=@Nom,Description=@Description,DateDebut=@DateDebut,DateFin=@DateFin " +
+                "WHERE IdEvenement=@IdEvenement";
         }
         public override bool Delete(int key)
         {
@@ -38,7 +38,7 @@ namespace XmasDAL.Repository
         {
             Dictionary<string, object> Parameters = itemToDictio(item);
             int id = insert(Parameters);
-            item.id = id;
+            item.IdEvenement = id;
             return item;
         }
 
@@ -60,7 +60,7 @@ namespace XmasDAL.Repository
         {
             return new Evenement()
             {
-                id = (int)d["IdEvenement"],
+                IdEvenement = (int)d["IdEvenement"],
                 Nom = d["Nom"].ToString(),
                 Description = d["Description"].ToString(),
                 DateDebut = (DateTime)d["DateDebut"],

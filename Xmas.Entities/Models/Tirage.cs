@@ -9,14 +9,15 @@ namespace Xmas.Entities.Models
     [Table("Tirage", "IdTirage")]
     public class Tirage : IEntities<int>
     {
-
         private int _idTirage;
         private int _idMembreOffre;
         private int _idMembreRecois;
         private int _idEvenement;
         private DateTime _dateTirage;
 
-        public int id
+
+
+        public int IdTirage
         {
             get
             {
@@ -78,6 +79,18 @@ namespace Xmas.Entities.Models
             set
             {
                 _dateTirage = value;
+            }
+        }
+
+        public Evenement Evenement { get; set; }
+        public Membre Expediteur { get; set; }
+        public Membre Destinataire { get; set; }
+
+        public int id
+        {
+            get
+            {
+                return _idTirage;
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ToolBox.Database;
 using Xmas.Entities.Models;
+using XmasDAL.Infra;
 
 namespace XmasDAL.Repository
 {
@@ -65,9 +66,21 @@ namespace XmasDAL.Repository
         {
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
-            string sid = (o[0] as TableAttribute).Fk.ToList()[0];
-            Command cmd = new Command($"DELETE FROM {s} WHERE {sid} = @Id;");
-            cmd.AddParameter("Id", key);
+            List<string> sid = (o[0] as TableAttribute).Fk.ToList();
+            string query = $"DELETE FROM {s}";
+            query = queryWithList(sid, query);
+            Command cmd = new Command(query);
+            //for (int i = 0; i < sid.Count; i++)
+            //{
+            //    if (key is CompositeKey<int, int>)
+            //    {
+            //        cmd.AddParameter($"{sid[i]}", key.PK[i + 1]);
+            //    }
+            //    else if (key is int)
+            //    {
+            //        cmd.AddParameter($"{sid[i]}", key);
+            //    }
+            //}
             return _oconn.ExecuteNonQuery(cmd) == 1;
         }
 
@@ -79,9 +92,22 @@ namespace XmasDAL.Repository
             // ne pas oublier de concatener a la fin le ;
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
-            string sid = (o[0] as TableAttribute).Fk.ToList()[0];
-            Command cmd = new Command($"SELECT * FROM {s} WHERE {sid} = @Id;");
-            cmd.AddParameter("Id", key);
+            List<string> sid = (o[0] as TableAttribute).Fk.ToList();
+            string query = $"SELECT * FROM {s}";
+            query = queryWithList(sid, query);
+            Command cmd = new Command(query);
+            //for (int i = 0; i < sid.Count; i++)
+            //{
+                if (key is CompositeKey<int, int> ck && sid.Count == 2)
+                {
+                    cmd.AddParameter($"{sid[0]}", ck.PK1);
+                    cmd.AddParameter($"{sid[1]}", ck.PK2);
+                }
+                else if (key is int && sid.Count == 1)
+                {
+                    cmd.AddParameter($"{sid[i]}", key);
+                }
+            //}
             return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
         }
 
@@ -89,6 +115,8 @@ namespace XmasDAL.Repository
         {
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
+
+
             Command cmd = new Command($"SELECT * FROM {s}");
             return _oconn.ExecuteReader(cmd, maFonction);
         }
@@ -113,6 +141,20 @@ namespace XmasDAL.Repository
             }
 
             return _oconn.ExecuteNonQuery(cmd) == 1;
+        }
+
+
+        private string queryWithList(List<string> sid, string query) 
+        {
+            for (int i = 0; i < sid.Count; i++)
+            {
+                query += (i == 0) ? $" WHERE {sid[i]} = @{sid[i]}" : $" AND {sid[i]} = @{sid[i]}";
+                if (i == sid.Count - 1)
+                {
+                    query += ";";
+                }
+            }
+            return query;
         }
     }
 }
