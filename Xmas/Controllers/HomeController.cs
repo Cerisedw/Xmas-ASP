@@ -28,6 +28,8 @@ namespace Xmas.Controllers
                 });
             }
 
+            Membre m = mr.Get(0);
+
             return View(listeMembresInfo);
         }
 

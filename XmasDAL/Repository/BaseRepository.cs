@@ -70,17 +70,19 @@ namespace XmasDAL.Repository
             string query = $"DELETE FROM {s}";
             query = queryWithList(sid, query);
             Command cmd = new Command(query);
-            //for (int i = 0; i < sid.Count; i++)
-            //{
-            //    if (key is CompositeKey<int, int>)
-            //    {
-            //        cmd.AddParameter($"{sid[i]}", key.PK[i + 1]);
-            //    }
-            //    else if (key is int)
-            //    {
-            //        cmd.AddParameter($"{sid[i]}", key);
-            //    }
-            //}
+            if (key is CompositeKey<int, int> ck && sid.Count == 2)
+            {
+                cmd.AddParameter($"{sid[0]}", ck.PK1);
+                cmd.AddParameter($"{sid[1]}", ck.PK2);
+            }
+            else if (key is int && sid.Count == 1)
+            {
+                cmd.AddParameter($"{sid[0]}", key);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
             return _oconn.ExecuteNonQuery(cmd) == 1;
         }
 
@@ -98,14 +100,18 @@ namespace XmasDAL.Repository
             Command cmd = new Command(query);
             //for (int i = 0; i < sid.Count; i++)
             //{
-                if (key is CompositeKey<int, int> && sid.Count == 2)
+                if (key is CompositeKey<int, int> ck && sid.Count == 2)
                 {
-                    cmd.AddParameter($"{sid[0]}", key.PK1);
-                    cmd.AddParameter($"{sid[1]}", key.PK2);
+                    cmd.AddParameter($"{sid[0]}", ck.PK1);
+                    cmd.AddParameter($"{sid[1]}", ck.PK2);
                 }
                 else if (key is int && sid.Count == 1)
                 {
                     cmd.AddParameter($"{sid[0]}", key);
+                }
+                else
+                {
+                    throw new NotImplementedException();
                 }
             //}
             return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
