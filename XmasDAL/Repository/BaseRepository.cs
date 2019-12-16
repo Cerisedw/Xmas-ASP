@@ -81,7 +81,7 @@ namespace XmasDAL.Repository
             }
             else
             {
-                throw new NotImplementedException();
+                throw new Exception("No key id valid ?");
             }
             return _oconn.ExecuteNonQuery(cmd) == 1;
         }
@@ -111,7 +111,7 @@ namespace XmasDAL.Repository
                 }
                 else
                 {
-                    throw new NotImplementedException();
+                    throw new Exception("No key id valid ?");
                 }
             //}
             return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
