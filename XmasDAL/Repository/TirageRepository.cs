@@ -11,7 +11,7 @@ namespace XmasDAL.Repository
     public sealed class TirageRepository : BaseRepository<int, Tirage>
     {
 
-        public TirageRepository() : base()
+        public TirageRepository(string Cnstr) : base(Cnstr)
         {
             InsertCommand = "INSERT INTO Tirage(IdMembreOffre,IdMembreRecois,IdEvenement,DateTirage) " +
                 "OUTPUT INSERTED.IdTirage " +

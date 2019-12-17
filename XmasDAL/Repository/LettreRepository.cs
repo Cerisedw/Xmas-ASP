@@ -12,7 +12,7 @@ namespace XmasDAL.Repository
     public sealed class LettreRepository : BaseRepository<CompositeKey<int, int>, Lettre>
     {
 
-        public LettreRepository() : base()
+        public LettreRepository(string Cnstr) : base(Cnstr)
         {
             InsertCommand = "INSERT INTO Lettre(IdMembre,IdEvenement,Contenu) VALUES (@IdMembre,@IdEvenement,@Contenu)";
             UpdateCommand = "UPDATE Lettre SET IdMembre=@IdMembre,IdEvenement=@IdEvenement,Contenu=@Contenu " +

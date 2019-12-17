@@ -13,7 +13,7 @@ namespace XmasDAL
     public sealed class MembreRepository : BaseRepository<int, Membre>
     {
 
-        public MembreRepository() : base()
+        public MembreRepository(string Cnstr) : base(Cnstr)
         {
             InsertCommand = "INSERT INTO Membre(Nom, Prenom, Surnom, Courriel, MotDePasse) " +
                 "OUTPUT INSERTED.IdMembre " +

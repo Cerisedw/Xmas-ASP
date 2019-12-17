@@ -10,7 +10,7 @@ namespace XmasDAL.Repository
 {
     public sealed class EvenementRepository : BaseRepository<int, Evenement>
     {
-        public EvenementRepository() : base()
+        public EvenementRepository(string Cnstr) : base(Cnstr)
         {
             InsertCommand = "INSERT INTO Evenement(Nom,Description,DateDebut,DateFin) " +
                 "OUTPUT INSERTED.IdEvenement " +

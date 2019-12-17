@@ -11,7 +11,7 @@ namespace XmasDAL.Repository
 {
     public sealed class CadeauRepository : BaseRepository<int, Cadeau>
     {
-        public CadeauRepository() : base()
+        public CadeauRepository(string Cnstr) : base(Cnstr)
         {
             InsertCommand = "INSERT INTO Cadeau(Nom,Description,Magasin,Prix,IdMembre) " +
                 "OUTPUT INSERTED.IdCadeau " +

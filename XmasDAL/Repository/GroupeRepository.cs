@@ -10,7 +10,7 @@ namespace XmasDAL.Repository
 {
     public sealed class GroupeRepository : BaseRepository<int, Groupe>
     {
-        public GroupeRepository() : base ()
+        public GroupeRepository(string Cnstr) : base (Cnstr)
         {
             InsertCommand = "INSERT INTO Groupe(Nom,Description,IdEvenement) " +
                 "OUTPUT INSERTED.IdGroupe VALUES (@Nom,@Description,@IdEvenement)";

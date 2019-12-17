@@ -12,7 +12,7 @@ namespace XmasDAL.Repository
     public sealed class CadeauEvenementRepository : BaseRepository<CompositeKey<int, int>, CadeauEvenement>
     {
 
-        public CadeauEvenementRepository() : base()
+        public CadeauEvenementRepository(string Cnstr) : base(Cnstr)
         {
             InsertCommand = "INSERT INTO CadeauEvenement(IdEvenement,IdCadeau,Preference) " +
                 "VALUES (@IdEvenement,@IdCadeau,@Preference)";

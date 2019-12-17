@@ -5,16 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using Xmas.Entities;
 using Xmas.Models;
+using Xmas.Tools;
 using XmasDAL;
 
 namespace Xmas.Controllers
 {
     public class HomeController : Controller
     {
+        string connString = @"Data Source=WAD-12\ADMINSQL;Initial Catalog=XmasDb;User ID=aspuser;Password=test1234=;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public ActionResult Index()
         {
+            MembreInfo cam = new MembreInfo() { Nom = "Camille" };
+            MembreRepository mr = new MembreRepository(connString);
 
-            MembreRepository mr = new MembreRepository();
+            SessionUtils.ConnectedUser = cam;
 
             List<Membre> listeMembres = mr.GetAll().ToList();
             List<MembreInfo> listeMembresInfo = new List<MembreInfo>();
@@ -27,8 +31,6 @@ namespace Xmas.Controllers
                     ImgProfil = "https://robohash.org/" + membre.Surnom + ".png"
                 });
             }
-
-            Membre m = mr.Get(0);
 
             return View(listeMembresInfo);
         }

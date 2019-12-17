@@ -18,10 +18,11 @@ namespace XmasDAL.Repository
         private string _insertCommand;
         private string _updateCommand;
         private Connection _oconn;
-        private string _cnstr = @"Data Source=WAD-12\ADMINSQL;Initial Catalog=XmasDb;User ID=aspuser;Password=test1234=;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private string _cnstr;
 
-        protected BaseRepository()
+        protected BaseRepository(string Cnstr)
         {
+            this._cnstr = Cnstr;
             _oconn = new Connection(_cnstr);
         }
 
@@ -88,18 +89,14 @@ namespace XmasDAL.Repository
 
         protected T get(TKey key, Func<SqlDataReader, T> maFonction)
         {
-            // Essayer de faire le tableau pour FK => si il ne contient qu'un élément => $"SELECT * FROM {s} WHERE {sid} = @Id;"
-            // Si on en a plusieurs, faire une boucle for ou on concatene un 
-            // AND  IdEvenement= @IdEvenement par exemple pour chaque autre element de FK apres FK[0]
-            // ne pas oublier de concatener a la fin le ;
+            
             Object[] o = System.Attribute.GetCustomAttributes(typeof(T));
             string s = (o[0] as TableAttribute).TableName;
             List<string> sid = (o[0] as TableAttribute).Fk.ToList();
             string query = $"SELECT * FROM {s}";
             query = queryWithList(sid, query);
             Command cmd = new Command(query);
-            //for (int i = 0; i < sid.Count; i++)
-            //{
+
                 if (key is CompositeKey<int, int> ck && sid.Count == 2)
                 {
                     cmd.AddParameter($"{sid[0]}", ck.PK1);
@@ -113,7 +110,7 @@ namespace XmasDAL.Repository
                 {
                     throw new Exception("No key id valid ?");
                 }
-            //}
+
             return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
         }
 
