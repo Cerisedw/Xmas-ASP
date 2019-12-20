@@ -38,7 +38,6 @@ namespace Xmas.Areas.Membre.Controllers
                     SessionUtils.ConnectedUser.ImgProfil = "/Content/img/" + x;
                 }
                     return View();
-
             }
             return RedirectToAction("Index", new { controller = "Home", area = "Membre" });
         }
@@ -57,7 +56,6 @@ namespace Xmas.Areas.Membre.Controllers
             {
                 if(file != null)
                 {
-
                     string[] dir = Directory.GetFiles(HttpContext.Server.MapPath("/Content/img/"), $"{SessionUtils.ConnectedUser.IdMembre}.*");
                     if (dir.Count() > 0)
                     {
