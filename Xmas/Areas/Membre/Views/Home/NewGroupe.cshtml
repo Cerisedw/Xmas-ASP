@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Groupe";
+}
+
+    <form method="post" action="/Membre/Home/NewGroupe">
+        <label>Nom</label>
+        <input type="text" name="Nom" /></br>
+        <label>Description</label>
+        <input type="text" name="Description" /></br>
+        <select name="IdEvenement">
+            @foreach(Xmas.Models.EvenementInfo evenement in Model)
+            {
+                <option value="@evenement.IdEvenement">@evenement.Nom</option>
+            }
+        </select>
+        <button type="submit">Envoyer</button>
+    </form>

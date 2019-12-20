@@ -126,9 +126,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EvenementInfo.cs" />
     <Compile Include="Models\GroupeInfo.cs" />
     <Compile Include="Models\MembreInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\EvenementTools.cs" />
     <Compile Include="Tools\GroupeTools.cs" />
     <Compile Include="Tools\MembreVtoDb.cs" />
     <Compile Include="Tools\SessionUtils.cs" />
@@ -157,6 +159,7 @@
     <Content Include="Areas\Membre\Views\Home\Profil.cshtml" />
     <Content Include="Areas\Membre\Views\Home\ProfilModif.cshtml" />
     <Content Include="Areas\Membre\Views\Home\Groupe.cshtml" />
+    <Content Include="Areas\Membre\Views\Home\NewGroupe.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

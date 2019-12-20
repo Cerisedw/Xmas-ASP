@@ -82,6 +82,19 @@ namespace Xmas.Areas.Membre.Controllers
             IEnumerable<GroupeInfo> listeGroupes = GroupeTools.ListeViewToDb(gr.GetAllFromMembre(SessionUtils.ConnectedUser.IdMembre));
             return View(listeGroupes ?? new List<GroupeInfo>());
         }
+        [HttpGet]
+        public ActionResult NewGroupe()
+        {
+            EvenementRepository er = new EvenementRepository(connString);
+            List<EvenementInfo> listeEvents = EvenementTools.ListeViewToDb(er.GetAll());
+            return View(listeEvents);
+        }
+        [HttpPost]
+        public ActionResult NewGroupe(EvenementInfo evenement)
+        {
+            // Ajouter l'ajout du groupe avec l'id de l'evenement contenu dans evenement afin d'ajouter le groupe au membre de la session
+            return RedirectToAction("Groupe", new { controller = "Home", area = "Membre" });
+        }
 
 
         [HttpPost]
