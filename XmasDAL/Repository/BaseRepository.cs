@@ -17,6 +17,7 @@ namespace XmasDAL.Repository
 
         private string _insertCommand;
         private string _updateCommand;
+        private string _customCommand;
         private Connection _oconn;
         private string _cnstr;
 
@@ -49,6 +50,19 @@ namespace XmasDAL.Repository
             set
             {
                 _updateCommand = value;
+            }
+        }
+
+        public string CustomCommand
+        {
+            get
+            {
+                return _customCommand;
+            }
+
+            set
+            {
+                _customCommand = value;
             }
         }
 
@@ -144,6 +158,25 @@ namespace XmasDAL.Repository
             }
 
             return _oconn.ExecuteNonQuery(cmd) == 1;
+        }
+
+        protected T getByLogin(Dictionary<string, object> parameters, Func<SqlDataReader, T> maFonction)
+        {
+            Command cmd = new Command(CustomCommand);
+            foreach (KeyValuePair<string, object> item in parameters)
+            {
+                cmd.AddParameter(item.Key, item.Value);
+            }
+            return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
+        }
+
+
+        protected IEnumerable<T> getAllFromMembre(TKey key, Func<SqlDataReader, T> maFonction)
+        {
+            Command cmd = new Command(CustomCommand);
+            cmd.AddParameter("Id", key);
+            return _oconn.ExecuteReader(cmd, maFonction);
+
         }
 
 

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Groupe";
+}
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            @foreach (Xmas.Models.GroupeInfo groupe in Model)
+            {
+                <td>@groupe.Nom</td>
+            }
+        </tr>
+        <tr>
+            <th>Description</th>
+            @foreach (Xmas.Models.GroupeInfo groupe in Model)
+            {
+                <td>@groupe.Description</td>
+            }
+        </tr>
+
+    </table>

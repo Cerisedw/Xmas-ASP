@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Profil";
+}
+
+<h2>Modifier mon profil :</h2></br>
+<form method="post" action="/Membre/Home/ProfilModif" enctype="multipart/form-data">
+    <label>Nom</label>
+    <input type="text" name="Nom" value="@Xmas.Tools.SessionUtils.ConnectedUser.Nom" /></br>
+    <label>Prenom</label>
+    <input type="text" name="Prenom" value="@Xmas.Tools.SessionUtils.ConnectedUser.Prenom" /></br>
+    <label>Surnom</label>
+    <input type="text" name="Surnom" value="@Xmas.Tools.SessionUtils.ConnectedUser.Surnom" /></br>
+    <label>Email</label>
+    <input type="text" name="Courriel" value="@Xmas.Tools.SessionUtils.ConnectedUser.Courriel" /></br>
+    <label>Password</label>
+    <input type="password" name="MotDePasse" @Xmas.Tools.SessionUtils.ConnectedUser.MotDePasse /></br>
+    <input type="file" name="file" id="file"><br />
+    <button type="submit">Envoyer</button>
+</form>

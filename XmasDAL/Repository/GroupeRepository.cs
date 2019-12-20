@@ -41,6 +41,12 @@ namespace XmasDAL.Repository
             return item;
         }
 
+        public IEnumerable<Groupe> GetAllFromMembre(int key)
+        {
+            CustomCommand = @"SELECT Groupe.* FROM Groupe INNER JOIN MembreGroupe ON Groupe.IdGroupe = MembreGroupe.IdGroupe WHERE MembreGroupe.IdMembre = @Id;";
+            return base.getAllFromMembre(key, createItem);
+        }
+
         // Transforme un objet en dictionnaire pour le Base Repository
         protected override Dictionary<string, object> itemToDictio(Groupe item)
         {

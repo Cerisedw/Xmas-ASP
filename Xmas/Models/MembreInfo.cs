@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,10 @@ namespace Xmas.Models
         private string _motDePasse;
         private string _imgProfil;
 
+        public MembreInfo()
+        {
+            ImgProfil = "https://robohash.org/" + this.Surnom + ".png";
+        }
 
         public int IdMembre
         {

@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Profil";
+}
+
+
+<h2>@Xmas.Tools.SessionUtils.ConnectedUser.Nom @Xmas.Tools.SessionUtils.ConnectedUser.Prenom</h2>
+<h3>@Xmas.Tools.SessionUtils.ConnectedUser.Surnom</h3>
+<img src="@Xmas.Tools.SessionUtils.ConnectedUser.ImgProfil" />
+<p>Email : @Xmas.Tools.SessionUtils.ConnectedUser.Courriel</p>
+
+<a href="/Membre/Home/ProfilModif">Modifier mon profil</a>

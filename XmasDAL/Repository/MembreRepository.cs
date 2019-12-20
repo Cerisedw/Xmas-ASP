@@ -46,6 +46,14 @@ namespace XmasDAL
             return item;
         }
 
+        
+
+        public Membre getByLogin(Membre item)
+        {
+            CustomCommand = @"SELECT * FROM Membre WHERE Courriel = @Courriel AND MotDePasse = @MotDePasse;";
+            Dictionary<string, object> Parameters = itemToDictio(item);
+            return base.getByLogin(Parameters, createItem);
+        }
 
         // Transforme un objet en dictionnaire pour le Base Repository
         protected override Dictionary<string, object> itemToDictio(Membre item)

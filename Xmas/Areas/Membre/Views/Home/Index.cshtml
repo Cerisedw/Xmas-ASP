@@ -1,0 +1,29 @@
+﻿﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Log In</h2></br>
+<form method="post" action="/Membre/Home/Login">
+    <label>Email</label>
+    <input type="text" name="Courriel" /></br>
+    <label>Password</label>
+    <input type="password" name="MotDePasse" /></br>
+    <button type="submit">Envoyer</button></br></br>
+</form>
+
+
+<h2>Sign Up</h2></br>
+<form method="post" action="/Membre/Home/SignUp">
+    <label>Nom</label>
+    <input type="text" name="Nom" /></br>
+    <label>Prenom</label>
+    <input type="text" name="Prenom" /></br>
+    <label>Surnom</label>
+    <input type="text" name="Surnom" /></br>
+    <label>Email</label>
+    <input type="text" name="Courriel" /></br>
+    <label>Password</label>
+    <input type="password" name="MotDePasse" /></br>
+    <button type="submit">Envoyer</button>
+</form>

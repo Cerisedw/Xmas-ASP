@@ -20,7 +20,10 @@
             <span class="banner-line"></span>
         </div>
         <h3>happy new year</h3>
-        <h3>@Xmas.Tools.SessionUtils.ConnectedUser.Nom</h3>
+        @if (Xmas.Tools.SessionUtils.ConnectedUser != null)
+        {
+            <h3>@Xmas.Tools.SessionUtils.ConnectedUser.Surnom</h3>
+        }
 
     </div>
 </div>
@@ -124,10 +127,10 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation">
-                            <a href="~/Account/Register" role="tab" data-toggle="tab">Enregistrez-vous</a>
+                            <a href="/Membre/Home/Index" role="tab" data-toggle="tab">Enregistrez-vous</a>
                         </li>
                         <li role="presentation">
-                            <a href="~/Acount/Login" role="tab" data-toggle="tab">Connectez-vous</a>
+                            <a href="/Membre/Home/Index" role="tab" data-toggle="tab">Connectez-vous</a>
                         </li>
                     </ul>
                     <!-- Tab panes -->
