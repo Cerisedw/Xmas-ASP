@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +14,7 @@ namespace Xmas.Controllers
 {
     public class HomeController : Controller
     {
-        string connString = @"Data Source=WAD-12\ADMINSQL;Initial Catalog=XmasDb;User ID=aspuser;Password=test1234=;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string connString = ConfigurationManager.ConnectionStrings["CnstrDev"].ConnectionString;
         public ActionResult Index()
         {
             MembreRepository mr = new MembreRepository(connString);
@@ -22,11 +24,18 @@ namespace Xmas.Controllers
             List<MembreInfo> listeMembresInfo = new List<MembreInfo>();
 
             foreach (Membre membre in listeMembres) {
+
+                string[] dir = Directory.GetFiles(HttpContext.Server.MapPath("/Content/img/"), $"{membre.id}.*");
+
+                string x = dir[0].Substring(dir[0].LastIndexOf(@"\") + 1);
+                string y = "/Content/img/" + x;
+
+
                 listeMembresInfo.Add(new MembreInfo(){  
                     IdMembre = membre.id, Nom = membre.Nom,
                     Prenom = membre.Prenom, Surnom = membre.Surnom,
                     Courriel = membre.Courriel, MotDePasse = membre.MotDePasse,
-                    ImgProfil = "https://robohash.org/" + membre.Surnom + ".png"
+                    ImgProfil = y
                 });
             }
 

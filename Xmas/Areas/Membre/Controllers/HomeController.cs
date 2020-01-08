@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,7 @@ namespace Xmas.Areas.Membre.Controllers
 {
     public class HomeController : Controller
     {
-        string connString = @"Data Source=WAD-12\ADMINSQL;Initial Catalog=XmasDb;User ID=aspuser;Password=test1234=;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string connString = ConfigurationManager.ConnectionStrings["CnstrDev"].ConnectionString;
 
         // GET: Membre/Home
         public ActionResult Index()
@@ -90,9 +91,11 @@ namespace Xmas.Areas.Membre.Controllers
             return View(listeEvents);
         }
         [HttpPost]
-        public ActionResult NewGroupe(EvenementInfo evenement)
+        public ActionResult NewGroupe(GroupeInfo groupe)
         {
             // Ajouter l'ajout du groupe avec l'id de l'evenement contenu dans evenement afin d'ajouter le groupe au membre de la session
+            GroupeRepository gr = new GroupeRepository(connString);
+            gr.Insert(GroupeTools.MbviewToDb(groupe));
             return RedirectToAction("Groupe", new { controller = "Home", area = "Membre" });
         }
 

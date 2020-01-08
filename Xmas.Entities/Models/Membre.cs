@@ -18,9 +18,6 @@ namespace Xmas.Entities
         private string _courriel;
         private string _motDePasse;
 
-
-
-
         public int IdMembre
         {
             get

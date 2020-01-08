@@ -69,6 +69,5 @@ namespace XmasDAL.Repository
                 IdEvenement = (int)d["IdEvenement"]
             };
         }
-
     }
 }
