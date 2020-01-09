@@ -146,7 +146,7 @@ namespace XmasDAL.Repository
                 cmd.AddParameter(item.Key, item.Value);
             }
 
-            return _oconn.ExecuteNonQuery(cmd);
+            return (int)_oconn.ExecuteScalar(cmd);
         }
 
         protected bool update(Dictionary<string, object> parameters)
@@ -167,7 +167,7 @@ namespace XmasDAL.Repository
             {
                 cmd.AddParameter(item.Key, item.Value);
             }
-            return _oconn.ExecuteReader(cmd, maFonction).SingleOrDefault();
+            return _oconn.ExecuteReader(cmd, maFonction).FirstOrDefault();
         }
 
 

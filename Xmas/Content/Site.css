@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.tabGroupe th {
+    border: 1px solid #2c4259;
+    padding: 10px;
+}
+.tabGroupe td {
+    border: 1px solid #2c4259;
+    padding: 10px;
+}
+.tabGroupe thead {
+    background-color: #aa798b;
+}

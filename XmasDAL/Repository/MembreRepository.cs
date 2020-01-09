@@ -64,7 +64,7 @@ namespace XmasDAL
             dictio["Prenom"] = item.Prenom;
             dictio["Surnom"] = item.Surnom;
             dictio["Courriel"] = item.Courriel;
-            dictio["MotDePasse"] = item.MotDePasse;
+            dictio["MotDePasse"] = item.HashMDP;
             return dictio;
         }
 

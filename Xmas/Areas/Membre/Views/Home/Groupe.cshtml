@@ -9,22 +9,26 @@
 }
 else
 {
-    <table>
-        <tr>
-            <th>Nom</th>
-            @foreach (Xmas.Models.GroupeInfo groupe in Model)
-            {
-                <td>@groupe.Nom</td>
-            }
-        </tr>
-        <tr>
-            <th>Description</th>
-            @foreach (Xmas.Models.GroupeInfo groupe in Model)
-            {
-                <td>@groupe.Description</td>
-            }
-        </tr>
 
+    <table class="tabGroupe">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Evènement</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (Xmas.Models.GroupeInfo groupe in Model)
+                {
+                    <td>@groupe.Nom</td>
+                    <td>@groupe.Description</td>
+                    <td>@groupe.Evenement.Nom</td>
+                }
+
+            </tr>
+        </tbody>
     </table>
 }
 

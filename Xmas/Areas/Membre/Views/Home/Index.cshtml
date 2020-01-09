@@ -3,18 +3,35 @@
     ViewBag.Title = "Index";
 }
 
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+
 <h2>Log In</h2></br>
 <form method="post" action="/Membre/Home/Login">
     <label>Email</label>
-    <input type="text" name="Courriel" /></br>
+    <input type="text" name="Email" /></br>
     <label>Password</label>
-    <input type="password" name="MotDePasse" /></br>
+    <input type="password" name="Password" /></br>
     <button type="submit">Envoyer</button></br></br>
+    @if (@ViewBag.ErrorLoginMessage != null)
+    {
+
+        <center>
+            <p class="alert alert-danger">@Html.Raw(ViewBag.ErrorLoginMessage)</p>
+        </center>
+    }
+
 </form>
 
 
 <h2>Sign Up</h2></br>
-<form method="post" action="/Membre/Home/SignUp">
+<form method="post" action="/Membre/Home/SignUp" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
     <label>Nom</label>
     <input type="text" name="Nom" /></br>
     <label>Prenom</label>
@@ -22,8 +39,19 @@
     <label>Surnom</label>
     <input type="text" name="Surnom" /></br>
     <label>Email</label>
-    <input type="text" name="Courriel" /></br>
+    <input type="text" name="Email" /></br>
     <label>Password</label>
     <input type="password" name="MotDePasse" /></br>
+    <label>Confirmer le password</label>
+    <input type="password" name="ConfirmMotDePasse" /></br>
+    <input type="file" name="file" id="file"></br>
     <button type="submit">Envoyer</button>
+    @if (@ViewBag.ErrorMessage != null)
+    {
+
+        <center>
+            <p class="alert alert-danger">@Html.Raw(ViewBag.ErrorMessage)</p>
+        </center>
+    }
+
 </form>

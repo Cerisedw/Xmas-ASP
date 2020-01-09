@@ -26,6 +26,10 @@ namespace Xmas.Tools
 
         public static MembreInfo MbDbToView (Membre membre)
         {
+            if (membre == null)
+            {
+                return null;
+            }
             return new MembreInfo()
             {
                 IdMembre = membre.IdMembre,
@@ -37,10 +41,25 @@ namespace Xmas.Tools
             };
         }
 
-        //public static bool MembreNoNull()
-        //{
+        public static Membre loginToDb(LoginModel loginM)
+        {
+            return new Membre()
+            {
+                Courriel = loginM.Email,
+                MotDePasse = loginM.Password
+            };
+        }
 
-        //}
-
+        public static Membre registerToView(RegisterModel registerM)
+        {
+            return new Membre()
+            {
+                Nom = registerM.Nom,
+                Prenom = registerM.Prenom,
+                Surnom = registerM.Surnom,
+                Courriel = registerM.Email,
+                MotDePasse = registerM.MotDePasse
+            };
+        }
     }
 }

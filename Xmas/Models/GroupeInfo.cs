@@ -63,5 +63,8 @@ namespace Xmas.Models
                 _idEvenement = value;
             }
         }
+
+        public EvenementInfo Evenement { get; set; }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Xmas.Entities.Models;
@@ -95,6 +96,22 @@ namespace Xmas.Entities
                 _motDePasse = value;
             }
         }
+
+        public string HashMDP
+        {
+            get
+            {
+                if (_motDePasse == null) throw new InvalidOperationException("Le mot de passe est vide.");
+                using (SHA512 sha512Hash = SHA512.Create())
+                {
+                    byte[] sourceBytes = Encoding.UTF8.GetBytes(_motDePasse);
+                    byte[] hashBytes = sha512Hash.ComputeHash(sourceBytes);
+                    string hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+                    return hash;
+                }
+            }
+        }
+
         public IEnumerable<Cadeau> Cadeau { get; set; }
 
         public IEnumerable<Lettre> Lettre { get; set; }

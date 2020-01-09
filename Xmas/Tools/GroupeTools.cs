@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using Xmas.Entities.Models;
 using Xmas.Models;
+using XmasDAL.Repository;
 
 namespace Xmas.Tools
 {
@@ -24,12 +26,14 @@ namespace Xmas.Tools
 
         public static GroupeInfo MbDbToView(Groupe groupe)
         {
+            EvenementTools.addEventInfoToGroupe(groupe);
             return new GroupeInfo()
             {
                 IdGroupe = groupe.IdGroupe,
                 Nom = groupe.Nom,
                 Description = groupe.Description,
-                IdEvenement = groupe.IdEvenement
+                IdEvenement = groupe.IdEvenement,
+                Evenement = EvenementTools.DbToView(groupe.Evenement)
             };
         }
 
@@ -43,5 +47,8 @@ namespace Xmas.Tools
             }
             return listeGroupesInfo;
         }
+
+
+
     }
 }

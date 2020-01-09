@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using Xmas.Entities.Models;
 using Xmas.Models;
+using XmasDAL.Repository;
 
 namespace Xmas.Tools
 {
@@ -46,6 +48,14 @@ namespace Xmas.Tools
             }
             return listeEvenementsInfo;
         }
+
+        public static Groupe addEventInfoToGroupe(Groupe groupe)
+        {
+            EvenementRepository er = new EvenementRepository(ConfigurationManager.ConnectionStrings["CnstrDev"].ConnectionString);
+            groupe.Evenement = er.Get(groupe.IdEvenement);
+            return groupe;
+        }
+
 
     }
 }

@@ -41,9 +41,15 @@ namespace XmasDAL.Repository
             return item;
         }
 
-        public IEnumerable<Groupe> GetAllFromMembre(int key)
+        public IEnumerable<Groupe> GetAllFromMembre(int key, bool isAdmin=false)
         {
-            CustomCommand = @"SELECT Groupe.* FROM Groupe INNER JOIN MembreGroupe ON Groupe.IdGroupe = MembreGroupe.IdGroupe WHERE MembreGroupe.IdMembre = @Id;";
+            CustomCommand = @"SELECT Groupe.* FROM Groupe INNER JOIN MembreGroupe ON Groupe.IdGroupe = MembreGroupe.IdGroupe WHERE MembreGroupe.IdMembre = @Id";
+            if (isAdmin)
+            {
+                CustomCommand += " AND (MembreGroupe.Admin = 1)";
+            }
+            CustomCommand += ";";
+            
             return base.getAllFromMembre(key, createItem);
         }
 
