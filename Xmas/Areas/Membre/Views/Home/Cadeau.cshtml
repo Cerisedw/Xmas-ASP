@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Cadeau";
+}
+
+@if (Model.Count == 0)
+{
+    <h2>Vous n'avez pas encore de cadeau dans votre liste.</h2>
+}
+else
+{
+
+    <table class="tabGroupe">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Magasin</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (Xmas.Models.CadeauInfo cadeau in Model)
+                {
+                    <td>@cadeau.Nom</td>
+                    <td>@cadeau.Description</td>
+                    <td>@cadeau.Magasin</td>
+                    <td>@cadeau.Prix</td>
+                }
+
+            </tr>
+        </tbody>
+    </table>
+}

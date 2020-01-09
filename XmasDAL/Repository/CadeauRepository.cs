@@ -44,6 +44,12 @@ namespace XmasDAL.Repository
             return item;
         }
 
+        public IEnumerable<Cadeau> GetAllFromMembre(int key)
+        {
+            CustomCommand = @"SELECT Cadeau.* FROM Cadeau INNER JOIN Membre ON Cadeau.IdMembre = Membre.IdMembre WHERE Membre.IdMembre = @Id;";
+            return base.getAllFromMembre(key, createItem);
+        }
+
 
         // Transforme un objet en dictionnaire pour le Base Repository
         protected override Dictionary<string, object> itemToDictio(Cadeau item)
@@ -67,7 +73,7 @@ namespace XmasDAL.Repository
                 Nom = d["Nom"].ToString(),
                 Description = d["Description"].ToString(),
                 Magasin = d["Magasin"].ToString(),
-                Prix = (float)d["Prix"],
+                Prix = (double)d["Prix"],
                 IdMembre = (int)d["IdMembre"]
             };
         }

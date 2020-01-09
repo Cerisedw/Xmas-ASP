@@ -171,5 +171,16 @@ namespace Xmas.Areas.Membre.Controllers
             SessionUtils.ConnectedUser = null;
             return RedirectToAction("Index", new { controller = "Home", area = "Membre" });
         }
+
+        // Cadeau liste
+
+        public ActionResult Cadeau()
+        {
+            CadeauRepository cr = new CadeauRepository(connString);
+            IEnumerable<CadeauInfo> listeCadeaux = CadeauTools.ListeViewToDb(cr.GetAllFromMembre(SessionUtils.ConnectedUser.IdMembre));
+            return View(listeCadeaux ?? new List<CadeauInfo>());
+        }
+
+
     }
 }
