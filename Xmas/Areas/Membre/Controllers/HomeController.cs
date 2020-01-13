@@ -7,11 +7,13 @@ using System.Web;
 using System.Web.Mvc;
 using Xmas.Models;
 using Xmas.Tools;
+using Xmas.Tools.Filters;
 using XmasDAL;
 using XmasDAL.Repository;
 
 namespace Xmas.Areas.Membre.Controllers
 {
+    //[CustomAuthorize]
     public class HomeController : Controller
     {
         string connString = ConfigurationManager.ConnectionStrings["CnstrDev"].ConnectionString;
@@ -77,28 +79,7 @@ namespace Xmas.Areas.Membre.Controllers
         }
 
 
-        public ActionResult Groupe()
-        {
-            GroupeRepository gr = new GroupeRepository(connString);
-            IEnumerable<GroupeInfo> listeGroupes = GroupeTools.ListeViewToDb(gr.GetAllFromMembre(SessionUtils.ConnectedUser.IdMembre));
-            return View(listeGroupes ?? new List<GroupeInfo>());
-        }
-        [HttpGet]
-        public ActionResult NewGroupe()
-        {
-            EvenementRepository er = new EvenementRepository(connString);
-            List<EvenementInfo> listeEvents = EvenementTools.ListeViewToDb(er.GetAll());
-            return View(listeEvents);
-        }
-        [HttpPost]
-        public ActionResult NewGroupe(GroupeInfo groupe)
-        {
-            // Ajouter l'ajout du groupe avec l'id de l'evenement contenu dans evenement afin d'ajouter le groupe au membre de la session
-            GroupeRepository gr = new GroupeRepository(connString);
-            gr.Insert(GroupeTools.MbviewToDb(groupe));
-            return RedirectToAction("Groupe", new { controller = "Home", area = "Membre" });
-        }
-
+        //Login
 
         [HttpPost]
         public ActionResult Login(LoginModel m)
@@ -107,6 +88,7 @@ namespace Xmas.Areas.Membre.Controllers
             MembreInfo membre = MembreVtoDb.MbDbToView(mr.getByLogin(MembreVtoDb.loginToDb(m)));
             if (membre != null)
             {
+                SessionUtils.IsConnected = true;
                 SessionUtils.ConnectedUser = membre;
                 return RedirectToAction("Profil", new { controller = "Home", area = "Membre" });
             }
@@ -169,17 +151,11 @@ namespace Xmas.Areas.Membre.Controllers
         public ActionResult LogOff()
         {
             SessionUtils.ConnectedUser = null;
+            SessionUtils.IsConnected = false;
+
             return RedirectToAction("Index", new { controller = "Home", area = "Membre" });
         }
 
-        // Cadeau liste
-
-        public ActionResult Cadeau()
-        {
-            CadeauRepository cr = new CadeauRepository(connString);
-            IEnumerable<CadeauInfo> listeCadeaux = CadeauTools.ListeViewToDb(cr.GetAllFromMembre(SessionUtils.ConnectedUser.IdMembre));
-            return View(listeCadeaux ?? new List<CadeauInfo>());
-        }
 
 
     }

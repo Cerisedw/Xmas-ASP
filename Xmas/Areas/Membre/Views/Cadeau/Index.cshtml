@@ -19,17 +19,23 @@ else
                 <th>Prix</th>
             </tr>
         </thead>
+
         <tbody>
-            <tr>
-                @foreach (Xmas.Models.CadeauInfo cadeau in Model)
-                {
+            @foreach (Xmas.Models.CadeauInfo cadeau in Model)
+            {
+                <tr>
+
                     <td>@cadeau.Nom</td>
                     <td>@cadeau.Description</td>
                     <td>@cadeau.Magasin</td>
                     <td>@cadeau.Prix</td>
-                }
+                    <td><a href="/Membre/Cadeau/Edit/@cadeau.IdCadeau">Edit</a></td>
 
-            </tr>
+
+
+                </tr>
+            }
         </tbody>
     </table>
 }
+<a href="/Membre/Cadeau/Create">Nouveau Cadeau</a>

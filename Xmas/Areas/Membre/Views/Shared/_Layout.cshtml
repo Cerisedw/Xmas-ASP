@@ -20,8 +20,8 @@
 
                 @if (Xmas.Tools.SessionUtils.ConnectedUser != null)
                 {
-                    @Html.ActionLink("Mes Groupes", "Groupe", "Home", new { area = "Membre" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Mes Cadeaux", "Cadeau", "Home", new { area = "Membre" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Mes Groupes", "Index", "Groupe", new { area = "Membre" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Mes Cadeaux", "Index", "Cadeau", new { area = "Membre" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("LogOff", "LogOff", "Home", new { area = "Membre" }, new { @class = "navbar-brand" })
                 }
             </div>

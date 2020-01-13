@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Modifier mon groupe :</h2></br>
+<form method="post" action="/Membre/Groupe/Edit">
+    <input type="hidden" name="IdGroupe" value="@Model.Groupe.IdGroupe" />
+    <label>Nom</label>
+    <input type="text" name="Nom" value="@Model.Groupe.Nom" /></br>
+    <label>Description</label>
+    <input type="text" name="Description" value="@Model.Groupe.Description" /></br>
+    <label>Evenement</label>
+    <select name="IdEvenement">
+        @foreach (Xmas.Models.EvenementInfo evenement in Model.Evenements)
+        {
+            <option value="@evenement.IdEvenement">@evenement.Nom</option>
+        }
+    </select></br>
+    <button type="submit">Envoyer</button>
+</form>

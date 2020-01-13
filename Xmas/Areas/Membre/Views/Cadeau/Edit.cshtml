@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Modifier mon cadeau :</h2></br>
+<form method="post" action="/Membre/Cadeau/Edit">
+    <input type="hidden" name="IdCadeau" value="@Model.IdCadeau" />
+    <label>Nom</label>
+    <input type="text" name="Nom" value="@Model.Nom" /></br>
+    <label>Description</label>
+    <input type="text" name="Description" value="@Model.Description" /></br>
+    <label>Magasin</label>
+    <input type="text" name="Magasin" value="@Model.Magasin" /></br>
+    <label>Prix</label>
+    <input type="number" name="Prix" value="@Model.Prix" /></br>
+    <button type="submit">Envoyer</button>
+</form>

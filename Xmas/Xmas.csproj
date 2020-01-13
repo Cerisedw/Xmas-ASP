@@ -120,6 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Membre\Controllers\CadeauController.cs" />
+    <Compile Include="Areas\Membre\Controllers\GroupeController.cs" />
     <Compile Include="Areas\Membre\Controllers\HomeController.cs" />
     <Compile Include="Areas\Membre\MembreAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -127,6 +129,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CadeauInfo.cs" />
+    <Compile Include="Models\EditGroupeInfo.cs" />
     <Compile Include="Models\EvenementInfo.cs" />
     <Compile Include="Models\GroupeInfo.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -162,9 +165,12 @@
     <Content Include="Areas\Membre\Views\Home\Index.cshtml" />
     <Content Include="Areas\Membre\Views\Home\Profil.cshtml" />
     <Content Include="Areas\Membre\Views\Home\ProfilModif.cshtml" />
-    <Content Include="Areas\Membre\Views\Home\Groupe.cshtml" />
-    <Content Include="Areas\Membre\Views\Home\NewGroupe.cshtml" />
-    <Content Include="Areas\Membre\Views\Home\Cadeau.cshtml" />
+    <Content Include="Areas\Membre\Views\Groupe\Index.cshtml" />
+    <Content Include="Areas\Membre\Views\Groupe\Create.cshtml" />
+    <Content Include="Areas\Membre\Views\Cadeau\Index.cshtml" />
+    <Content Include="Areas\Membre\Views\Groupe\Edit.cshtml" />
+    <Content Include="Areas\Membre\Views\Cadeau\Edit.cshtml" />
+    <Content Include="Areas\Membre\Views\Cadeau\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

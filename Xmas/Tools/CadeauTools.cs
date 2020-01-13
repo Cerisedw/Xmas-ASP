@@ -21,6 +21,20 @@ namespace Xmas.Tools
                 IdMembre = cadeau.IdMembre
             };
         }
+
+        public static Cadeau CadeauInfoToCadeau(CadeauInfo cadeau)
+        {
+            return new Cadeau()
+            {
+                IdCadeau = cadeau.IdCadeau,
+                Nom = cadeau.Nom,
+                Description = cadeau.Description,
+                Magasin = cadeau.Magasin,
+                Prix = cadeau.Prix,
+                IdMembre = cadeau.IdMembre
+            };
+        }
+
         public static List<CadeauInfo> ListeViewToDb(IEnumerable<Cadeau> listeCadeaux)
         {
         List<CadeauInfo> listeCadeauxInfo = new List<CadeauInfo>();

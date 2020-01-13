@@ -22,5 +22,18 @@ namespace Xmas.Tools
             set { HttpContext.Current.Session["ConnectedUser"] = value; }
         }
 
+        public static bool IsConnected
+        {
+            get
+            {
+                if (HttpContext.Current.Session["IsConnected"] != null)
+                {
+                    return (bool)HttpContext.Current.Session["IsConnected"];
+                }
+                return false;
+            }
+            set { HttpContext.Current.Session["IsConnected"] = value; }
+        }
+
     }
 }

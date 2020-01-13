@@ -56,6 +56,12 @@ namespace Xmas.Tools
             return groupe;
         }
 
+        public static List<EvenementInfo> getAllEventsInfo()
+        {
+            EvenementRepository er = new EvenementRepository(ConfigurationManager.ConnectionStrings["CnstrDev"].ConnectionString);
+            List<Evenement> events = er.GetAll().ToList();
+            return ListeViewToDb(events);
+        }
 
     }
 }

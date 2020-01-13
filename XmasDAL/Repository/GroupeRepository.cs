@@ -33,10 +33,20 @@ namespace XmasDAL.Repository
             return base.getAll(createItem);
         }
 
+        public Groupe InsertWithAdmin(Groupe item, int idMembre)
+        {
+            InsertCommand = "EXEC AjoutGroupe @Nom, @Description, @IdEvenement, @IdMembre;";
+            Dictionary<string, object> Parameters = itemToDictio(item);
+            Parameters["IdMembre"] = idMembre;
+            int id = base.insert(Parameters);
+            item.IdGroupe = id;
+            return item;
+        }
+
         public override Groupe Insert(Groupe item)
         {
             Dictionary<string, object> Parameters = itemToDictio(item);
-            int id = insert(Parameters);
+            int id = base.insert(Parameters);
             item.IdGroupe = id;
             return item;
         }

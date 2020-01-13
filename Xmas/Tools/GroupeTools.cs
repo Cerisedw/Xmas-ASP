@@ -48,7 +48,16 @@ namespace Xmas.Tools
             return listeGroupesInfo;
         }
 
-
+        public static EditGroupeInfo GroupeToEdit(Groupe groupe)
+        {
+            GroupeInfo groupeI = MbDbToView(groupe);
+            List<EvenementInfo> listEvents = EvenementTools.getAllEventsInfo();
+            return new EditGroupeInfo()
+            {
+                Groupe = groupeI,
+                Evenements = listEvents
+            };
+        }
 
     }
 }

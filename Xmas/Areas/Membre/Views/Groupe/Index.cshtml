@@ -19,17 +19,20 @@ else
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @foreach (Xmas.Models.GroupeInfo groupe in Model)
-                {
+            @foreach (Xmas.Models.GroupeInfo groupe in Model)
+            {
+                <tr>
+
                     <td>@groupe.Nom</td>
                     <td>@groupe.Description</td>
                     <td>@groupe.Evenement.Nom</td>
-                }
+                    <td><a href="/Membre/Groupe/Edit/@groupe.IdGroupe">Edit</a></td>
 
-            </tr>
+
+                </tr>
+            }
         </tbody>
     </table>
 }
 
-<a href="/Membre/Home/NewGroupe">Nouveau Groupe</a>
+<a href="/Membre/Groupe/Create">Nouveau Groupe</a>
