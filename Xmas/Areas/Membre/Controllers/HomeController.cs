@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.Mvc;
 using Xmas.Models;
 using Xmas.Tools;
-using Xmas.Tools.Filters;
 using XmasDAL;
 using XmasDAL.Repository;
 

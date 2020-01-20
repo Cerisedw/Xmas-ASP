@@ -6,12 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using Xmas.Models;
 using Xmas.Tools;
-using Xmas.Tools.Filters;
 using XmasDAL.Repository;
 
 namespace Xmas.Areas.Membre.Controllers
 {
-    [CustomAuthorize]
     public class GroupeController : Controller
     {
         string connString = ConfigurationManager.ConnectionStrings["CnstrDev"].ConnectionString;
